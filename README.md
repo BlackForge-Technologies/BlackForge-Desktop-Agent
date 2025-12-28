@@ -42,27 +42,42 @@ This app can type/click on your computer. Start in **Manual** mode until you tru
 
 ### Linux
 Install with one command: :contentReference[oaicite:4]{index=4}
-```bash
+'''''
 curl -fsSL https://ollama.com/install.sh | sh
+.....
+
 Ollama quickstart docs (official): https://docs.ollama.com/quickstart 
 Ollama Documentation
 
 2) Start Ollama + verify it works
 Verify the server responds:
 
-bash
-Copy code
+'''''
 curl http://localhost:11434/api/tags
+.....
+
+   
 Pull a model (example):
 
-bash
-Copy code
-ollama pull qwen2.5:7b
+'''''
+ollama pull qwen3-vl:8b
+.....
+
+
+Or if you want a cloud model(Faster and more intelligent):
+
+'''''
+ollama pull qwen3-vl:235b-cloud
+.....
+
+
 List installed models:
 
-bash
-Copy code
+'''''
 ollama list
+.....
+
+
 Notes:
 
 If you enable Vision (screenshots) in settings, you must choose a vision-capable model.
@@ -70,33 +85,31 @@ If you enable Vision (screenshots) in settings, you must choose a vision-capable
 If the model rejects images, the app automatically retries without images.
 
 3) Get the app running (from source)
-Save the file
-Save your Python file as:
+   Download the code if you haven't allready.
+   navigate to where Agent.py is located.
 
-blackforge_agent.py
+   open command terminal and type the following:
 
-Create a virtual environment + install dependencies
-Windows (PowerShell)
-powershell
-Copy code
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install requests pyautogui pillow PySide6
-python .\blackforge_agent.py
-If you hit PyAutoGUI dependency errors:
+   '''''
+   python -m pip install --upgrade pip
+   .....
 
-powershell
-Copy code
-pip install pygetwindow pymsgbox pyscreeze pytweening mouseinfo
-macOS (Terminal)
-bash
-Copy code
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install requests pyautogui pillow PySide6
-python blackforge_agent.py
+
+   '''''
+   pip install requests pyautogui pillow PySide6
+   .....
+
+
+   '''''
+   pip install pygetwindow pymsgbox pyscreeze pytweening mouseinfo
+   .....
+
+  Then you can run the Agent with one command: 
+
+  '''''
+  Python Agent.py
+  .....
+
 macOS permissions (required for control + screenshots):
 
 System Settings → Privacy & Security → Accessibility
@@ -104,27 +117,47 @@ System Settings → Privacy & Security → Accessibility
 System Settings → Privacy & Security → Screen Recording
 
 Linux (Ubuntu/Debian)
-bash
-Copy code
+
+'''''
 sudo apt update
+.....
+
+
+'''''
 sudo apt install -y python3-venv python3-pip scrot
-python3 -m venv .venv
-source .venv/bin/activate
+.....
+
+
+'''''
 python -m pip install --upgrade pip
+.....
+
+
+'''''
 pip install requests pyautogui pillow PySide6
-python blackforge_agent.py
+.....
+
+
+Then you can run the Agent with one command:
+
+'''''
+python Agent.py
+.....
+
+
+
 4) First run configuration (in the app)
 Open Settings and confirm:
 
 Base URL: http://localhost:11434
 
-Model: pick one from “Refresh models”
+Model: pick any model you have installed. 
 
 Send screenshots (Vision): ON only if your model supports images
 
-Auto-execute: OFF (recommended initially)
+Auto-execute: ON (Gives the model full controll)
 
-Strict keyboard-first: ON (recommended)
+Strict keyboard-first: ON (recommended, if mouse actions are needed then turn off. Windows doesen't need)
 
 Always confirm mouse actions: ON (recommended)
 
@@ -132,35 +165,21 @@ Always confirm mouse actions: ON (recommended)
 “Network error talking to Ollama”
 Check Ollama is running and reachable:
 
-bash
-Copy code
+'''''
 curl http://localhost:11434/api/tags
+.....
+
+
+'''''
 Confirm Base URL is http://localhost:11434
+.....
+
+
 
 “Model rejected screenshots / vision unsupported”
 Turn off Send screenshots (Vision), or select a vision-capable model.
 
 The agent will also retry without images automatically.
 
-PyAutoGUI FAILSAFE triggered
-You moved the mouse to a screen corner (intentional safety stop). Restart the agent.
 
-6) Optional: Build an executable (PyInstaller)
-Install PyInstaller:
-
-bash
-Copy code
-pip install pyinstaller
-Build one-file app:
-
-bash
-Copy code
-pyinstaller --noconfirm --onefile --windowed --name BlackForge blackforge_agent.py
-Output:
-
-Windows: dist/BlackForge.exe
-
-macOS/Linux: dist/BlackForge
-
-macOS: you may need to grant Accessibility + Screen Recording to the built app as well.
-
+~Good Luck!
