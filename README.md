@@ -54,7 +54,7 @@ Use **Manual mode first** until you trust your prompts and model.
 
 ### Linux
 Install with one command:
-```bash
+
 curl -fsSL https://ollama.com/install.sh | sh
 Official quickstart/docs:
 
